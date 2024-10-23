@@ -1,9 +1,10 @@
-<?php 
+<?php
 session_start();
 require 'db_connect.php'; // Hubungkan dengan file koneksi database
 
+// Proses login atau pendaftaran otomatis
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = $_POST['username']; // Ambil email dari input form
+    $email = $_POST['email']; // Ambil email dari input form
     $password = $_POST['password']; // Ambil password dari input form
 
     // Query untuk mencari user berdasarkan email
@@ -11,14 +12,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->execute(['email' => $email]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // Jika user ditemukan dan password yang dimasukkan cocok
+    // Jika user ditemukan dan password cocok
     if ($user && password_verify($password, $user['password'])) {
         $_SESSION['user_id'] = $user['user_id'];  // Simpan user ID ke session
         $_SESSION['username'] = $user['name'];    // Simpan nama pengguna ke session
         header('Location: index.php');            // Redirect ke halaman utama
         exit();
+    } elseif (!$user) {
+        // Jika user tidak ditemukan, otomatis mendaftarkan user baru
+        $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+
+        // Daftarkan user baru
+        $stmt = $pdo->prepare("INSERT INTO users (name, email, password) VALUES (:name, :email, :password)");
+        $stmt->execute([
+            'name' => $email, // Nama default diambil dari email, bisa diubah nanti
+            'email' => $email,
+            'password' => $hashed_password
+        ]);
+
+        // Ambil ID user yang baru saja didaftarkan
+        $user_id = $pdo->lastInsertId();
+
+        // Simpan user ke session
+        $_SESSION['user_id'] = $user_id;
+        $_SESSION['username'] = $email; // Gunakan email sebagai nama default
+
+        // Redirect ke halaman profil setelah login
+        header('Location: index.php');
+        exit();
     } else {
-        $_SESSION['error'] = "Invalid email or password!"; // Tampilkan pesan error
+        // Jika user ditemukan tapi password salah
+        $_SESSION['error'] = "Invalid email or password!";
         header('Location: login.php');
         exit();
     }
@@ -50,10 +74,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <p style="color: red;"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></p>
     <?php endif; ?>
     <form action="login.php" method="POST">
-        <input type="text" name="username" placeholder="Enter Email" required><br><br>
-        <input type="password" name="password" placeholder="Enter Password" required><br><br>
-        <button type="submit" class="button">Login</button>
+        <label for="email">Nomor HP atau Email</label><br>
+        <input type="text" id="email" name="email" placeholder="Enter Email" required><br><br>
+        <label for="password">Password</label><br>
+        <input type="password" id="password" name="password" placeholder="Enter Password" required><br><br>
+        <button type="submit" name="login" class="button">Login</button>
     </form>
+    <a href="register.php" class="help-link">Belum punya akun? Daftar</a>
 </div>
 
 </body>
