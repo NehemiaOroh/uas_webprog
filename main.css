@@ -1,0 +1,385 @@
+@font-face {
+    font-family: Sans-Bold ;
+    src: url(fonts/GeneralSans-Bold.otf);
+}
+
+@font-face {
+    font-family: SemiBold;
+    src: url(fonts/GeneralSans-Semibold.otf);
+}
+
+@font-face {
+    font-family: Gambetta;
+    src: url(fonts/Gambetta-Regular.otf);
+}
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Karla-ExtraBold;
+}   
+
+
+body{
+    
+    min-height: 100vh;
+    overflow-x: hidden;
+    transition: background-color 1s ease;
+}
+
+
+
+header {
+    background-color: white;
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 100px;
+    z-index: 100;
+    transition: all 0.5s;
+    text-decoration: none;
+}
+
+.header h1 {
+    font-family: Sans-Bold;
+}
+
+/* Flex container to center the links and keep login/register on the right */
+.navigation_ {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1; /* Allows the center section to grow and center the content */
+}
+
+.navigation_ a {
+    font-family: SemiBold;
+    font-size: 25px;
+    text-decoration: none; /* Remove default underline */
+    padding: 6px 15px;
+    margin: 0 10px;
+    position: relative; /* Required for positioning the ::after element */
+    transition: 0.4s;
+    color: black;
+}
+
+/* Add an underline effect on hover */
+.navigation_ a::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    left: 50%;
+    bottom: -8px; /* Position the underline slightly below the text */
+    background-color: #cc308a; /* Underline color */
+    transition: width 0.4s ease, left 0.4s ease; /* Smooth transition */
+}
+
+.navigation_ a:hover::after {
+    width: 100%; /* Expand underline to full width on hover */
+    left: 0; /* Start the underline from the left on hover */
+}
+
+
+.navigation_-buttons {
+    display: flex;
+    gap: 10px; /* Space between login and register buttons */
+}
+
+.button {
+    text-decoration: none;
+    font-family: SemiBold;
+    background-color: white;
+    color: #cc308a;
+    border: 2px solid #cc308a;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #cc308a;
+    color: white;
+}
+
+.button2 {
+    font-family: SemiBold;
+    text-decoration: none;
+    background-color: #cc308a;
+    color: white;
+    border: 2px solid #cc308a;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.button2:hover {
+    background-color: white;
+    color: #cc308a;
+}
+
+.hero {
+    margin-left:100px ;
+    padding-top: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.left-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.card1 {
+
+    color: black;
+    padding: 20px;
+    border-radius: 15px;
+    width: 200px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.card1 img{
+    margin-left: 100px;
+    width: 300px;
+}
+
+.card2 img{
+    margin-left: 450px ;
+    width: 320px;
+    margin-top: -240px;
+}
+
+.card3 img{
+    margin-left: 100px ;
+    width: 320px;
+    margin-top: -240px;
+}
+
+.card4 img{
+    margin-left: 450px ;
+    width: 320px;
+    margin-top: -240px;
+}
+
+.card img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.hero-text h1{
+    
+    margin-left: -300px;
+    margin-top: -380px;
+    font-size: 90px;
+    margin-right: -500px;
+}
+
+.hero-text p{
+    text-align: justify;
+    font-size: 20px;
+    font-family: SemiBold;
+    margin-top: 50px;
+    padding-left: 20px;
+    margin-right: -500px;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+.container{
+    background-color: #cc308a;
+    display: flex;
+    align-items: center;
+
+    overflow: hidden;
+}
+
+.scroll{
+    white-space: nowrap;
+    margin: 0 2em;
+}
+
+.scroll div{
+    display: flex;
+    gap: 2em;
+}
+
+.scroll h1{
+    letter-spacing: 20px;
+    color: white;
+    margin-bottom: 0;
+    font-size: 50px;
+    font-family: Sans-Bold;
+}
+
+.RightToLeft{
+    animation: RightToLeft 10s infinite linear;
+}
+
+@keyframes RightToLeft {
+    from{
+        transform: translateX(0%);
+    }
+    to{
+        transform: translateX(-50%);
+    }
+}
+
+.second {
+    height: 80vh;
+    display: flex;            /* Enable flexbox */
+    justify-content: space-between; /* Space between h1+paragraph and the image */
+    align-items: center;      /* Vertically center the content */
+}
+
+.text-content {
+    padding-top: 100px;
+    padding-left: 200px;
+    padding-bottom: 100px;
+    font-size: 35px;
+}
+
+.text-content h1{
+    font-family: Sans-Bold;
+}
+
+.text-content p{
+    font-family: Gambetta;
+}
+
+.right-image{
+    padding-top: 50px;
+    width: 850px;
+    padding-right: 100px;
+}
+
+
+
+.LeftToRight{
+    animation: LeftToRight 10s infinite linear;
+}
+
+@keyframes LeftToRight {
+    from{
+        transform: translateX(-50%);
+    }
+    to{
+        transform: translateX(0%);
+    }
+}
+
+.events {
+    padding-left: 180px;
+    padding-top: 100px; /* Existing padding */
+    padding-bottom: 50px; /* Add bottom padding for extra space */
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 10px; /* Adds space between the text and image */
+}
+
+.event-text {
+    margin-bottom: 50px; /* Increase space between the text and the images */
+}
+
+
+.event-text h1 {
+    font-size: 50px;
+    font-family: Sans-Bold;
+    text-align: center;
+    display: inline-block;
+    border-bottom: 4px solid #cc308a; /* Adds the underline */
+    padding-bottom: 10px; /* Adjusts the space between the text and the underline */
+}
+.recent_image {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Reduced gap between items */
+    justify-content: flex-start;
+}
+
+.event_item {
+    width: 30%; /* Adjust width as needed */
+    height: 400px; /* Fixed height to maintain aspect ratio */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #cc308a; /* Add this line for the underline */
+    padding-bottom: 10px; /* Optional: Space between the image and the underline */
+}
+
+
+.event_item img {
+    width: auto; /* Allow the image width to adjust */
+    height: 100%; /* Fill the container height */
+    object-fit: cover; /* Maintain aspect ratio and cover container */
+    border-radius: 10px;
+}
+
+.event_item2{
+    margin-top: 200px;
+    width: 30%; /* Adjust width as needed */
+    height: 400px; /* Fixed height to maintain aspect ratio */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+
+}
+
+.event_item2 img{
+    width: auto; /* Allow the image width to adjust */
+    height: 100%; /* Fill the container height */
+    object-fit: cover; /* Maintain aspect ratio and cover container */
+    border-radius: 10px;
+}
+
+
+.event-description {
+    padding-top: 10px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #cc308a;
+    font-size: 20px;
+    margin-left: -180px;
+    font-family: SemiBold;
+    color: black;
+    text-align: left; /* Center the text */
+    margin-top: 20px;
+}
+
+.event_name{
+    margin-right: 80px;
+    padding-top: 10px;
+    line-height: 1.2;
+    margin-left: 60px;
+    font-size: 35px;
+    font-family: Sans-Bold;
+}
+
+
+
+
+
+
+
+
+
+
+
+
