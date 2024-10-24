@@ -2,7 +2,7 @@
 session_start();
 require 'db_connect.php'; // Hubungkan dengan file koneksi database
 
-// Proses login atau pendaftaran otomatis
+// Proses login
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email']; // Ambil email dari input form
     $password = $_POST['password']; // Ambil password dari input form
@@ -16,29 +16,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($user && password_verify($password, $user['password'])) {
         $_SESSION['user_id'] = $user['user_id'];  // Simpan user ID ke session
         $_SESSION['username'] = $user['name'];    // Simpan nama pengguna ke session
-        header('Location: index.php');            // Redirect ke halaman utama
+
+        // Cek role user
+        if ($user['role'] === 'admin') {
+            header('Location: admindashboard.php'); // Redirect ke dashboard admin
+        } else {
+            header('Location: index.php'); // Redirect ke halaman utama
+        }
         exit();
     } elseif (!$user) {
-        // Jika user tidak ditemukan, otomatis mendaftarkan user baru
-        $hashed_password = password_hash($password, PASSWORD_BCRYPT);
-
-        // Daftarkan user baru
-        $stmt = $pdo->prepare("INSERT INTO users (name, email, password) VALUES (:name, :email, :password)");
-        $stmt->execute([
-            'name' => $email, // Nama default diambil dari email, bisa diubah nanti
-            'email' => $email,
-            'password' => $hashed_password
-        ]);
-
-        // Ambil ID user yang baru saja didaftarkan
-        $user_id = $pdo->lastInsertId();
-
-        // Simpan user ke session
-        $_SESSION['user_id'] = $user_id;
-        $_SESSION['username'] = $email; // Gunakan email sebagai nama default
-
-        // Redirect ke halaman profil setelah login
-        header('Location: index.php');
+        // Jika user tidak ditemukan
+        $_SESSION['error'] = "User tidak ditemukan!";
+        header('Location: login.php'); // Redirect ke halaman login
         exit();
     } else {
         // Jika user ditemukan tapi password salah
@@ -48,6 +37,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">

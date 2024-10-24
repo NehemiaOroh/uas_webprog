@@ -127,6 +127,33 @@ header {
     color: #cc308a;
 }
 
+
+.profile-dropdown {
+    border-radius: 20px;
+    font-size: 20px;
+    display: none;
+    position: absolute;
+    
+    background-color: white;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+}
+
+.profile-dropdown a {
+    display: block; /* Make links block-level for better spacing */
+    padding: 10px; /* Add some padding for the links */
+    color: black; /* Text color */
+    text-decoration: none; /* Remove underline */
+}
+
+.profile-dropdown a:hover {
+    background-color: #f0f0f0; /* Change background on hover */
+    color: #cc308a; /* Change text color on hover */
+}
+.profile-dropdown.visible {
+    display: block;
+}
+
 .hero {
     margin-left:100px ;
     padding-top: 50px;
@@ -372,6 +399,152 @@ header {
     font-family: Sans-Bold;
 }
 
+
+.video-wrapper {
+    position: relative; /* Changed from absolute */
+    width: 100%;
+    height: 88vh;
+    overflow: hidden;
+}
+.video-wrapper video {
+    width: 100%;
+    height: 88vh;
+    object-fit: cover;
+}
+
+.video-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Adjust the alpha value to control the darkness */
+}
+
+.text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    z-index: 1; /* Ensure text is above the video */
+}
+
+.text-overlay h1 {
+    font-family: Sans-Bold;
+    font-size: 6vw;
+    margin-bottom: 1rem;
+}
+
+.text-overlay p{
+    font-size: 25px;
+    font-family: SemiBold;
+    margin-top: -25px;
+}
+
+
+
+.available h1{
+    line-height: 1.1;
+    font-family: Sans-Bold;
+    font-size: 60px;
+    margin-top: 100px;
+    margin-left: 100px;
+    height: 20vh;
+    text-align: left;
+    display: inline-block;
+    position: relative;
+    
+}
+
+.underline{
+    content: '';
+    width: 13%; /* Make the underline full width of the h1 */
+    height: 3px; /* Adjust the height of the underline */
+    background: #cc308a; /* Set the color of the underline */
+    position: absolute; /* Position it absolutely */
+    bottom: -27vh; /* Adjust the vertical position */
+    left: 100px; /* Align it to the left */
+
+}
+
+.event-container {
+    display: grid; /* Use CSS Grid for layout */
+    grid-template-columns: repeat(3, 1fr); /* Three equal columns */
+    gap: 20px; /* Space between the grid items */
+    padding: 150px; /* Padding around the container */
+}
+
+.event {
+    
+    overflow: hidden; /* Ensure content doesn't overflow */
+    text-align: center; /* Center the text */
+}
+
+.event img {
+    border-radius: 10px;
+    height: 50vh; /* Reduced height */
+    object-fit: cover; /* Cover the area without distortion */
+}
+
+.event-title {
+    font-family: Sans-Bold;
+    font-size: 2.5rem; /* Smaller title font size */
+    margin: 10px 0; /* Reduced margin for spacing */
+}
+
+.event-details, .location {
+    font-family: SemiBold;
+    margin: 5px 0; /* Reduced margin for spacing */
+}
+
+.location-info {
+    margin-left: 11vw;
+    display: flex; /* Use flexbox to align items */
+    align-items: center; /* Vertically center the items */
+}
+
+.location-info i {
+    margin-right: 8px; /* Space between the icon and the text */
+    color: #007bff; /* Optional: change the icon color */
+    font-size: 1.2rem; /* Optional: adjust icon size */
+}
+
+.location-info p {
+    margin: 0; /* Remove default margin from <p> */
+    font-weight: 600; /* Optional: semi-bold weight */
+    font-size: 1rem; /* Adjust font size if needed */
+}
+
+
+.get-ticket {
+    font-family: SemiBold;
+    background-color: #007bff; /* Button color */
+    color: #fff; /* Button text color */
+    border: none; /* Remove default border */
+    border-radius: 4px; /* Rounded corners */
+    padding: 8px 12px; /* Reduced padding for the button */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth background change */
+    font-size: 0.9rem; /* Smaller button font size */
+}
+
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .event-container {
+        grid-template-columns: repeat(2, 1fr); /* Two columns for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .event-container {
+        grid-template-columns: 1fr; /* Single column for mobile screens */
+    }
+}
 
 
 
