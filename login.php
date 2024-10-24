@@ -65,13 +65,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <p style="color: red;"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></p>
     <?php endif; ?>
     <form action="login.php" method="POST">
-        <label for="email">Nomor HP atau Email</label><br>
         <input type="text" id="email" name="email" placeholder="Enter Email" required><br><br>
-        <label for="password">Password</label><br>
         <input type="password" id="password" name="password" placeholder="Enter Password" required><br><br>
         <button type="submit" name="login" class="button">Login</button>
     </form>
-    <a href="register.php" class="help-link">Belum punya akun? Daftar</a>
+    <a href="register.php" class="help-link">Belum punya akun? Daftar, yuk!</a>
 </div>
 
 </body>
