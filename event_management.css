@@ -190,13 +190,13 @@ header {
     padding: 0;
 }
 #content main .table-data {
-    padding-top: 20vh;
-    margin-left: 25vw;
+    padding-top: 10vh;
+    margin-left: -5vw;
 	display: flex;
 	flex-wrap: wrap;
 	grid-gap: 24px;
 	margin-top: 24px;
-	width: 70%;
+	width: 160%;
 	color: var(--dark);
 }
 
@@ -207,7 +207,7 @@ header {
 	margin-bottom: 24px;
 }
 #content main .table-data .head h3 {
-	margin-right: auto;
+	text-align: center;
 	font-size: 24px;
 	font-weight: 600;
 }
@@ -223,6 +223,9 @@ header {
 	width: 100%;
 	border-collapse: collapse;
 }
+
+
+
 #content main .table-data .order table th {
     font-family: SemiBold;
 	padding-bottom: 12px;
@@ -256,9 +259,15 @@ header {
 	border-radius: 20px;
 	font-weight: 700;
 }
-/* 
-.event-management{
-    font
+
+.event-management {
+    font-family: Sans-Bold;
     padding-top: 10vh;
-    margin-left: 20vw;
-} */
+    margin-left: 10vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    min-height: 80vh; /* Ensures the section takes up enough vertical space */
+}
+

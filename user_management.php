@@ -49,12 +49,9 @@ if (isset($_GET['delete_event'])) {
     exit();
 }
 
-// Fetch available events
-$stmt = $pdo->prepare("SELECT * FROM events WHERE status = 'available'");
-$stmt->execute();
+// Fetch all events
+$stmt = $pdo->query("SELECT * FROM events");
 $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-
 
 // Fetch user registrations per event
 $registrations = [];
@@ -72,34 +69,27 @@ $users = $user_stmt->fetchAll(PDO::FETCH_ASSOC);
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-	<!-- Boxicons -->
-	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
-	<!-- My CSS -->
-	<link rel="stylesheet" href="style.css">
-
-	<title>AdminHub</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="admin.css">
+    <title>Admin Dashboard</title>
 </head>
 <body>
 
-
-	<!-- SIDEBAR -->
-	<section id="sidebar">
+<section id="sidebar">
 		<a href="#" class="brand">
 			
 			<span class="text" style="padding-left: 20px;">AdminHub</span>
 		</a>
 		<ul class="side-menu top">
 			<li class="active">
-				<a href="#">
+				<a href="admindashboard.php">
 					
 					<span class="text" style="padding-left: 20px;">Dashboard</span>
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a href="event_management.php">
 			
 					<span class="text" style="padding-left: 20px;">Event Management</span>
 				</a>
@@ -127,53 +117,31 @@ $users = $user_stmt->fetchAll(PDO::FETCH_ASSOC);
 			</li>
 		</ul>
 	</section>
-	<!-- SIDEBAR -->
 
-
-
-	<!-- CONTENT -->
-	<section id="content">
-		<!-- NAVBAR -->
-		<nav>		
-			<img src="img/people.png">
-		</nav>
-		<!-- NAVBAR -->
-
-		<!-- MAIN -->
-		<main>
-			<div class="table-data">
-				<div class="order">
-					<div class="head">
-						<h3>Available Events</h3>
-					</div>
-					<table>
+        <section class="user-management">
+            <h2>User Management</h2>
+            <h3>Registered Users</h3>
+            <table>
                 <tr>
-                    <th>Event Name</th>
-                    <th>Date</th>
-                    <th>Registrants</th>
+                    <th>User ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
                     <th>Actions</th>
                 </tr>
-                <?php foreach ($events as $event): ?>
+                <?php foreach ($users as $user): ?>
                     <tr>
-                        <td><?php echo htmlspecialchars($event['event_name']); ?></td>
-                        <td><?php echo htmlspecialchars($event['event_date']); ?></td>
-                        <td><?php echo htmlspecialchars($registrations[$event['event_id']]); ?></td>
+                        <td><?php echo htmlspecialchars($user['user_id']); ?></td>
+                        <td><?php echo htmlspecialchars($user['name']); ?></td>
+                        <td><?php echo htmlspecialchars($user['email']); ?></td>
                         <td>
-                            <a href="edit_event.php?id=<?php echo $event['event_id']; ?>">Edit</a>
-                            <a href="?delete_event=<?php echo $event['event_id']; ?>" onclick="return confirm('Are you sure you want to delete this event?');">Delete</a>
+                            <a href="delete_user.php?id=<?php echo $user['user_id']; ?>" onclick="return confirm('Are you sure you want to delete this user?');">Delete</a>
                         </td>
-                  	  </tr>
+                    </tr>
                 <?php endforeach; ?>
             </table>
-					
-				</div>
-			</div>
+        </section>
+    </main>
+</div>
 
-			
-	
-	<!-- CONTENT -->
-	
-
-	<script src="script.js"></script>
 </body>
 </html>
