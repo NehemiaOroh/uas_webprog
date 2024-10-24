@@ -60,8 +60,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </nav>
 </header>
 
-<div class="register-form" style="text-align: center; padding: 50px;">
-    <h1>Register</h1>
+<div class="container8">
+<div class="register-form">
+    <h2>Register</h2>
     <?php if(isset($_SESSION['error'])): ?>
         <p style="color: red;"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></p>
     <?php endif; ?>
@@ -69,12 +70,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <p style="color: green;"><?php echo $_SESSION['success']; unset($_SESSION['success']); ?></p>
     <?php endif; ?>
     <form action="register.php" method="POST">
+    <div class="form-group">
         <input type="text" name="name" placeholder="Enter Your Name" required><br><br>
         <input type="email" name="email" placeholder="Enter Your Email" required><br><br>
         <input type="password" name="password" placeholder="Enter Password" required><br><br>
         <input type="password" name="confirm_password" placeholder="Confirm Password" required><br><br>
+    </div>
         <button type="submit" class="button">Register</button>
     </form>
+    <h4><a href="login.php" class="help-link">Udah punya akun? Log in aja!</h4></a>
 </div>
 
 </body>
