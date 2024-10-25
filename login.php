@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="login.css">
     <title>Login</title>
 </head>
 <body>
@@ -72,7 +72,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
         <button type="submit" name="login" class="button">Login</button>
     </form>
-    <h4><a href="register.php" class="help-link">Belum punya akun? Daftar, yuk!</h4></a>
+    <h5><a href="register.php" class="help-link">Belum punya akun? Daftar, yuk!</h5></a>
+    </div>
 </div>
 
 </body>
