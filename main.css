@@ -127,6 +127,33 @@ header {
     color: #cc308a;
 }
 
+
+.profile-dropdown {
+    border-radius: 20px;
+    font-size: 20px;
+    display: none;
+    position: absolute;
+    
+    background-color: white;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+}
+
+.profile-dropdown a {
+    display: block; /* Make links block-level for better spacing */
+    padding: 10px; /* Add some padding for the links */
+    color: black; /* Text color */
+    text-decoration: none; /* Remove underline */
+}
+
+.profile-dropdown a:hover {
+    background-color: #f0f0f0; /* Change background on hover */
+    color: #cc308a; /* Change text color on hover */
+}
+.profile-dropdown.visible {
+    display: block;
+}
+
 .hero {
     margin-left:100px ;
     padding-top: 50px;
@@ -187,7 +214,7 @@ header {
     margin-left: -300px;
     margin-top: -380px;
     font-size: 90px;
-    margin-right: -500px;
+    margin-right: -450px;
 }
 
 .hero-text p{
@@ -196,7 +223,7 @@ header {
     font-family: SemiBold;
     margin-top: 50px;
     padding-left: 20px;
-    margin-right: -500px;
+    margin-right: -400px;
     line-height: 1.8;
     margin-bottom: 30px;
 }
@@ -284,9 +311,9 @@ header {
 }
 
 .events {
-    padding-left: 180px;
+    padding-left: 150px;
     padding-top: 100px; /* Existing padding */
-    padding-bottom: 50px; /* Add bottom padding for extra space */
+    padding-bottom: 80px; /* Add bottom padding for extra space */
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
@@ -299,7 +326,8 @@ header {
 
 
 .event-text h1 {
-    font-size: 50px;
+    margin-left: -50px;
+    font-size: 40px;
     font-family: Sans-Bold;
     text-align: center;
     display: inline-block;
@@ -320,7 +348,6 @@ header {
     flex-direction: column;
     align-items: center;
     margin-bottom: 10px;
-    border-bottom: 2px solid #cc308a; /* Add this line for the underline */
     padding-bottom: 10px; /* Optional: Space between the image and the underline */
 }
 
@@ -364,8 +391,9 @@ header {
 }
 
 .event_name{
+    padding-bottom: 50px;
     margin-right: 80px;
-    padding-top: 10px;
+    padding-top: -10px;
     line-height: 1.2;
     margin-left: 60px;
     font-size: 35px;
@@ -373,13 +401,279 @@ header {
 }
 
 
+.video-wrapper {
+    position: relative; /* Changed from absolute */
+    width: 100%;
+    height: 88vh;
+    overflow: hidden;
+}
+.video-wrapper video {
+    width: 100%;
+    height: 88vh;
+    object-fit: cover;
+}
+
+.video-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Adjust the alpha value to control the darkness */
+}
+
+.text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    z-index: 1; /* Ensure text is above the video */
+}
+
+.text-overlay h1 {
+    font-family: Sans-Bold;
+    font-size: 6vw;
+    margin-bottom: 1rem;
+}
+
+.text-overlay p{
+    font-size: 25px;
+    font-family: SemiBold;
+    margin-top: -25px;
+}
 
 
 
+.available h1{
+    line-height: 1.1;
+    font-family: Sans-Bold;
+    font-size: 60px;
+    margin-top: 100px;
+    margin-left: 100px;
+    height: 20vh;
+    text-align: left;
+    display: inline-block;
+    position: relative;
+    
+}
+
+.underline{
+    content: '';
+    width: 13%; /* Make the underline full width of the h1 */
+    height: 3px; /* Adjust the height of the underline */
+    background: #cc308a; /* Set the color of the underline */
+    position: absolute; /* Position it absolutely */
+    bottom: -27vh; /* Adjust the vertical position */
+    left: 100px; /* Align it to the left */
+
+}
+
+.event-container {
+    display: grid; /* Use CSS Grid for layout */
+    grid-template-columns: repeat(3, 1fr); /* Three equal columns */
+    gap: 20px; /* Space between the grid items */
+    padding: 150px; /* Padding around the container */
+}
+
+.event {
+    
+    overflow: hidden; /* Ensure content doesn't overflow */
+    text-align: center; /* Center the text */
+}
+
+.event img {
+    border-radius: 10px;
+    height: 50vh; /* Reduced height */
+    object-fit: cover; /* Cover the area without distortion */
+}
+
+.event-title {
+    font-family: Sans-Bold;
+    font-size: 2.5rem; /* Smaller title font size */
+    margin: 10px 0; /* Reduced margin for spacing */
+}
+
+.event-details, .location {
+    font-family: SemiBold;
+    margin: 5px 0; /* Reduced margin for spacing */
+}
+
+.location-info {
+    margin-left: 10.5vw;
+    display: flex; /* Use flexbox to align items */
+    align-items: center; /* Vertically center the items */
+}
+
+.location-info i {
+    margin-right: 8px; /* Space between the icon and the text */
+    color: #007bff; /* Optional: change the icon color */
+    font-size: 1.2rem; /* Optional: adjust icon size */
+}
+
+.location-info p {
+    margin: 0; /* Remove default margin from <p> */
+    font-weight: 600; /* Optional: semi-bold weight */
+    font-size: 1rem; /* Adjust font size if needed */
+}
 
 
+.get-ticket {
+    font-family: SemiBold;
+    background-color: #007bff; /* Button color */
+    color: #fff; /* Button text color */
+    border: none; /* Remove default border */
+    border-radius: 4px; /* Rounded corners */
+    padding: 8px 12px; /* Reduced padding for the button */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth background change */
+    font-size: 0.9rem; /* Smaller button font size */
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.popup-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    width: 80%;
+    max-width: 600px;
+}
+
+.close-popup {
+    float: right;
+    font-size: 20px;
+}
 
 
+.modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+    }
+
+.modal-content {
+        background-color: #fefefe;
+        margin: 15% auto; /* 15% from the top and centered */
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%; /* Could be more or less, depending on screen size */
+        border-radius: 5px; /* Rounded corners */
+}
+
+.modal-content p{
+    font-family: SemiBold;
+}
+
+.close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+.close:hover,
+.close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+}
+
+#modalEventName{
+    font-family: Sans-Bold;
+    padding-bottom: 20px;
+}
 
 
+   
 
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .event-container {
+        grid-template-columns: repeat(2, 1fr); /* Two columns for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .event-container {
+        grid-template-columns: 1fr; /* Single column for mobile screens */
+    }
+}
+
+.login-form {
+    text-align: center; 
+    padding: 50px;
+}
+
+.register-form {
+    text-align: center; 
+    padding: 50px;
+}
+
+.container8 {
+    width: 100%;
+    max-width: 400px;
+    margin: 100px auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+h2 {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: left;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #cc308a;
+}
+
+h4 {
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 10px;
+}
+
+h6 {
+    text-align: left;
+    font-weight: 10;
+}

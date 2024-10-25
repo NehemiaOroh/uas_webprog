@@ -1,0 +1,314 @@
+@font-face {
+    font-family: Sans-Bold ;
+    src: url(fonts/GeneralSans-Bold.otf);
+}
+
+@font-face {
+    font-family: SemiBold;
+    src: url(fonts/GeneralSans-Semibold.otf);
+}
+
+@font-face {
+    font-family: Gambetta;
+    src: url(fonts/Gambetta-Regular.otf);
+}
+
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+a {
+	text-decoration: none;
+}
+
+li {
+	list-style: none;
+}
+
+:root {
+	--lato: 'Lato', sans-serif;
+
+	--light: #F9F9F9;
+	--blue: #3C91E6;
+	--light-blue: #CFE8FF;
+	--grey: #eee;
+	--dark-grey: #AAAAAA;
+	--dark: #342E37;
+	--red: #DB504A;
+	--yellow: #FFCE26;
+	--light-yellow: #FFF2C6;
+	--orange: #FD7238;
+	--light-orange: #FFE0D3;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+}
+
+.container {
+    display: flex;
+}
+
+#sidebar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 280px;
+	height: 100%;
+	background: var(--light);
+	z-index: 2000;
+	font-family: var(--lato);
+	transition: .3s ease;
+	overflow-x: hidden;
+	scrollbar-width: none;
+}
+#sidebar::--webkit-scrollbar {
+	display: none;
+}
+#sidebar.hide {
+	width: 60px;
+}
+#sidebar .brand {
+    color: #cc308a;
+    font-family: Sans-Bold;
+	font-size: 30px;
+	font-weight: 700;
+	height: 56px;
+	display: flex;
+	align-items: center;
+
+	position: sticky;
+    padding-top: 40px;
+	padding-left: 10px;
+	background: var(--light);
+	z-index: 500;
+	padding-bottom: 20px;
+	box-sizing: content-box;
+}
+#sidebar .brand .bx {
+	min-width: 60px;
+	display: flex;
+	justify-content: center;
+}
+#sidebar .side-menu {
+	width: 100%;
+	margin-top: 48px;
+}
+#sidebar .side-menu li {
+	height: 48px;
+	background: transparent;
+	margin-left: 10px;
+	padding: 4px;
+}
+
+
+
+#sidebar .side-menu li a {
+    font-family: Sans-Bold;
+    font-size: 50px;
+	width: 100%;
+	height: 100%;
+	background: var(--light);
+	display: flex;
+	align-items: center;
+	font-size: 20px;
+	color: var(--dark);
+	white-space: nowrap;
+	overflow-x: hidden;
+}
+
+
+#sidebar .side-menu li a.logout {
+	color: var(--red);
+}
+#sidebar .side-menu.top li a:hover {
+	color: var(--blue);
+}
+#sidebar .side-menu li a .bx {
+	min-width: calc(60px  - ((4px + 6px) * 2));
+	display: flex;
+	justify-content: center;
+}
+
+.button {
+    margin-left: 20px;
+    text-decoration: none;
+    font-family: SemiBold;
+    background-color: white;
+    color: #cc308a;
+    border: 2px solid #cc308a;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #cc308a;
+    color: white;
+}
+
+.main-content {
+    flex: 1;
+    padding: 20px;
+}
+
+header {
+    margin-bottom: 20px;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card {
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 20px;
+    flex: 1;
+    margin: 0 10px;
+    text-align: center;
+}
+
+.recent-activity {
+    margin-top: 20px;
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+
+.recent-activity ul {
+    list-style: none;
+    padding: 0;
+}
+#content main .table-data {
+    padding-top: 20vh;
+    margin-left: 25vw;
+	display: flex;
+	flex-wrap: wrap;
+	grid-gap: 24px;
+	margin-top: 24px;
+	width: 70%;
+	color: var(--dark);
+}
+
+#content main .table-data .head {
+	display: flex;
+	align-items: center;
+	grid-gap: 16px;
+	margin-bottom: 24px;
+}
+#content main .table-data .head h3 {
+	margin-right: auto;
+	font-size: 24px;
+	font-weight: 600;
+}
+#content main .table-data .head .bx {
+	cursor: pointer;
+}
+
+#content main .table-data .order {
+	flex-grow: 1;
+	flex-basis: 500px;
+}
+#content main .table-data .order table {
+	width: 100%;
+	border-collapse: collapse;
+}
+#content main .table-data .order table th {
+    font-family: SemiBold;
+	padding-bottom: 12px;
+	font-size: 20px;
+	text-align: left;
+	border-bottom: 1px solid #cc308a;
+}
+#content main .table-data .order table td {
+    font-family: SemiBold;
+	padding: 16px 0;
+}
+#content main .table-data .order table tr td:first-child {
+	display: flex;
+	align-items: center;
+	grid-gap: 12px;
+	padding-left: 6px;
+}
+#content main .table-data .order table td img {
+	width: 36px;
+	height: 36px;
+	border-radius: 50%;
+	object-fit: cover;
+}
+#content main .table-data .order table tbody tr:hover {
+	background: var(--grey);
+}
+#content main .table-data .order table tr td .status {
+	font-size: 10px;
+	padding: 6px 16px;
+	color: var(--light);
+	border-radius: 20px;
+	font-weight: 700;
+}
+/* 
+.event-management{
+    font
+    padding-top: 10vh;
+    margin-left: 20vw;
+} */
+
+
+/* Centering and container styling */
+.user-management {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.user-management-container {
+    background-color: #f2f2f2; /* Light grey background */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 600px;
+    text-align: center;
+}
+
+/* Table styling */
+.user-management table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.user-management tr, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.user-management th {
+    font-family: Sans-Bold;
+}
+
+.user-management a {
+    color: #ff3333;
+    text-decoration: none;
+}
+
+.user-management a:hover {
+    color: #ff6666;
+    text-decoration: underline;
+}
+
+.newadmin{
+	font-family: SemiBold;
+}

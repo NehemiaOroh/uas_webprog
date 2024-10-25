@@ -1,64 +1,80 @@
 <?php
 session_start();
+require 'db_connect.php'; // Hubungkan dengan file koneksi database
 
-// Check if already logged in
-if (isset($_SESSION['admin_logged_in'])) {
-    header("Location: dashboard.php");
-    exit();
-}
+// Proses login
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $email = $_POST['email']; // Ambil email dari input style="font-family: Sans-Bold" form
+    $password = $_POST['password']; // Ambil password dari input style="font-family: Sans-Bold" form
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    // Query untuk mencari user berdasarkan email
+    $stmt = $pdo->prepare("SELECT * FROM users WHERE email = :email");
+    $stmt->execute(['email' => $email]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "event_management";
+    // Jika user ditemukan dan password cocok
+    if ($user && password_verify($password, $user['password'])) {
+        $_SESSION['user_id'] = $user['user_id'];  // Simpan user ID ke session
+        $_SESSION['username'] = $user['name'];    // Simpan nama pengguna ke session
 
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
+        // Cek role user
+        if ($user['role'] === 'admin') {
+            header('Location: admindashboard.php'); // Redirect ke dashboard admin
+        } else {
+            header('Location: index.php'); // Redirect ke halaman utama
+        }
+        exit();
+    } elseif (!$user) {
+        // Jika user tidak ditemukan
+        $_SESSION['error'] = "User tidak ditemukan!";
+        header('Location: login.php'); // Redirect ke halaman login
+        exit();
+    } else {        
+        // Jika user ditemukan tapi password salah
+        $_SESSION['error'] = "Invalid email or password!";
+        header('Location: login.php');
+        exit();
     }
-
-    $query = "SELECT * FROM users WHERE email = '$email' AND password = '$password' AND role = 'admin'";
-    $result = $conn->query($query);
-
-    if ($result->num_rows > 0) {
-        $_SESSION['admin_logged_in'] = true;
-        header("Location: dashboard.php");
-    } else {
-        echo "Invalid login credentials!";
-    }
-
-    $conn->close();
 }
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Login</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="login.css">
+    <title>Login</title>
 </head>
 <body>
-    <div class="container mt-5">
-        <h2>Admin Login</h2>
-        <form method="POST">
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" name="password" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Login</button>
-        </form>
+
+<header class="header" style="border: 5px black; border-bottom: 0.1px solid black;">
+    <h1 style="font-family: Sans-Bold;" >Unite</h1>
+    <nav class="navigation_">
+        <a href="index.php" style="color: black;">Home</a>
+        <a href="events.php" style="color: black;">Events</a>
+
+    </nav>
+</header>
+
+<div class="container8">
+<div class="login-form">
+    <h2>Log in</h2>
+    <?php if(isset($_SESSION['error'])): ?>
+        <p style="color: red;"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></p>
+    <?php endif; ?>
+    <form action="login.php" method="POST">
+        <div class="form-group">
+            <input style="font-family: Sans-Bold" type="text" id="email" name="email" placeholder="Enter Email" required><br><br>
+            <input style="font-family: Sans-Bold" type="password" id="password" name="password" placeholder="Enter Password" required><br><br>
+        </div>
+        <button type="submit" name="login" class="button">Login</button>
+    </form>
+    <h5><a href="register.php" class="help-link">Belum punya akun? Daftar, yuk!</h5></a>
     </div>
+</div>
+
 </body>
 </html>
