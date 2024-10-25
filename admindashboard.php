@@ -67,7 +67,6 @@ if (isset($_GET['delete_event'])) {
     exit();
 }
 
-// Fetch all events
 $stmt = $pdo->query("SELECT * FROM events");
 $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -78,7 +77,6 @@ foreach ($events as $event) {
     $stmt->execute([$event['event_id']]);
     $registrations[$event['event_id']] = $stmt->fetchColumn();
 }
-
 // Fetch all users for user management
 $user_stmt = $pdo->query("SELECT * FROM users");
 $users = $user_stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -140,6 +138,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['logout'])) {
 					<span class="text" style="padding-left: 20px;">User Management</span>
 				</a>
 			</li>
+            <li>
+				<a href="events.php">
+
+					<span class="text" style="padding-left: 20px;">See Events Page</span>
+				</a>
+			</li>
 			
 		</ul>
 		<ul class="side-menu">
@@ -166,21 +170,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['logout'])) {
 					<div class="head">
 						<h3 style="font-family: Sans-Bold; font-size: 40px;">Available Events</h3>
 					</div>
-					<table>
-                <tr>
-                    <th>Event Name</th>
-                    <th>Date</th>
-                    <th>Registrants</th>
-                    
-                </tr>
-                <?php foreach ($events as $event): ?>
+				<table>
                     <tr>
-                        <td><?php echo htmlspecialchars($event['event_name']); ?></td>
-                        <td><?php echo htmlspecialchars($event['event_date']); ?></td>
-                        <td><?php echo htmlspecialchars($registrations[$event['event_id']]); ?></td>
-                  	  </tr>
-                <?php endforeach; ?>
-            </table>
+                        <th>Event Name</th>
+                        <th>Date</th>
+                        <th>Registrants</th>
+                    </tr>
+                    <?php foreach ($events as $event): ?>
+                        <tr>
+                            <td><?php echo htmlspecialchars($event['event_name']); ?></td>
+                            <td><?php echo htmlspecialchars($event['event_date']); ?></td>
+                            <td><?php echo htmlspecialchars($event['current_participants']); ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </table>
 					
 				</div>
 			</div>
