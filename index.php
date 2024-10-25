@@ -164,7 +164,7 @@ if ($isLoggedIn) {
         <h1 class="event_name">Tulus Concert</h1>
     </div>
     <div class="event_item2">
-        <img src="photos/HIVi!.jp   g" alt="nadine">
+        <img src="photos/HIVi!.jpg" alt="nadine">
         <h2 class="event-description">28 Oktober 2024</h2>
         <h1 class="event_name">Hivi! Concert</h1>
     </div>
