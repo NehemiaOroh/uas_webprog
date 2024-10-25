@@ -56,11 +56,35 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
 // Fetch user registrations per event
 $registrations = [];
 foreach ($events as $event) {
-    $stmt = $pdo->prepare("SELECT COUNT(*) FROM registrations WHERE event_id = ?");
+    $stmt = $pdo->prepare("SELECT u.name, u.email FROM event_registrations er JOIN users u ON er.user_id = u.user_id WHERE er.event_id = ?");
     $stmt->execute([$event['event_id']]);
-    $registrations[$event['event_id']] = $stmt->fetchColumn();
+    $registrations[$event['event_id']] = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+if (isset($_POST['export_csv'])) {
+    header('Content-Type: text/csv');
+    header('Content-Disposition: attachment; filename="registrants.csv"');
+
+    // Open output stream
+    $output = fopen('php://output', 'w');
+
+    // Write CSV header
+    fputcsv($output, ['Event Name', 'User  Name', 'User  Email']);
+
+    // Fetch user registrations per event for CSV
+    foreach ($events as $event) {
+        $stmt = $pdo->prepare("SELECT u.name, u.email FROM event_registrations er JOIN users u ON er.user_id = u.user_id WHERE er.event_id = ?");
+        $stmt->execute([$event['event_id']]);
+        $registrants = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($registrants as $user) {
+            fputcsv($output, [$event['event_name'], $user['name'], $user['email']]);
+        }
+    }
+
+    fclose($output);
+    exit();
+}
 // Fetch all users for user management
 $user_stmt = $pdo->query("SELECT * FROM users");
 $users = $user_stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -123,6 +147,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['logout'])) {
 					<span class="text" style="padding-left: 20px;">User Management</span>
 				</a>
 			</li>
+            <li>
+				<a href="events.php">
+
+					<span class="text" style="padding-left: 20px;">See Events Page</span>
+				</a>
+			</li>
 			
 		</ul>
 		<ul class="side-menu">
@@ -177,24 +207,40 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['logout'])) {
 						<h3>Available Events</h3>
 					</div>
 					<table>
-                <tr>
-                    <th>Event Name</th>
-                    <th>Date</th>
-                    <th>Registrants</th>
-                    <th>Actions</th>
-                </tr>
-                <?php foreach ($events as $event): ?>
-                    <tr>
-                        <td><?php echo htmlspecialchars($event['event_name']); ?></td>
-                        <td><?php echo htmlspecialchars($event['event_date']); ?></td>
-                        <td><?php echo htmlspecialchars($registrations[$event['event_id']]); ?></td>
-                        <td>
-                        <a href="edit_event.php?id=<?php echo $event['event_id']; ?>" class="button" style="margin-left:-50px;">Edit</a>
-                        <a href="?delete_event=<?php echo $event['event_id']; ?>"class="button" onclick="return confirm('Are you sure you want to delete this event?');">Delete</a>
-                        </td>
-                  	  </tr>
-                <?php endforeach; ?>
-            </table>
+    <tr>
+        <th>Event Name</th>
+        <th>Date</th>
+        <th>Registrants</th>
+        <th>Actions</th>
+        <th>Registered Users</th>
+    </tr>
+    <?php foreach ($events as $event): ?>
+        <tr>
+            <td><?php echo htmlspecialchars($event['event_name']); ?></td>
+            <td><?php echo htmlspecialchars($event['event_date']); ?></td>
+            <td><?php echo htmlspecialchars($event['current_participants']); ?></td>
+            <td>
+                <a href="edit_event.php?id=<?php echo $event['event_id']; ?>" class="button">Edit</a>
+                <a href="?delete_event=<?php echo $event['event_id']; ?>" class="button" onclick="return confirm('Are you sure you want to delete this event?');">Delete</a>
+            </td>
+            <td>
+                <?php if (!empty($registrations[$event['event_id']])): ?>
+                    <ul>
+                        <?php foreach ($registrations[$event['event_id']] as $user): ?>
+                            <li><?php echo htmlspecialchars($user['name']) . ' (' . htmlspecialchars($user['email']) . ')'; ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php else: ?>
+                    <p>No registrants</p>
+                <?php endif; ?>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+    
+    <form method="POST" >
+                 <button style="margin-left: -10px; margin-bottom:10px;" type="submit" name="export_csv" class="button">Export Registrants to CSV</button>
+            </form>
+</table>
 					
 				</div>
 			</div>

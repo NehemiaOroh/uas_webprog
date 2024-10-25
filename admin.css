@@ -262,3 +262,53 @@ header {
     padding-top: 10vh;
     margin-left: 20vw;
 } */
+
+
+/* Centering and container styling */
+.user-management {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.user-management-container {
+    background-color: #f2f2f2; /* Light grey background */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 600px;
+    text-align: center;
+}
+
+/* Table styling */
+.user-management table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.user-management tr, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.user-management th {
+    font-family: Sans-Bold;
+}
+
+.user-management a {
+    color: #ff3333;
+    text-decoration: none;
+}
+
+.user-management a:hover {
+    color: #ff6666;
+    text-decoration: underline;
+}
+
+.newadmin{
+	font-family: SemiBold;
+}

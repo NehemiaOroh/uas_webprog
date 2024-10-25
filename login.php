@@ -4,8 +4,8 @@ require 'db_connect.php'; // Hubungkan dengan file koneksi database
 
 // Proses login
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = $_POST['email']; // Ambil email dari input form
-    $password = $_POST['password']; // Ambil password dari input form
+    $email = $_POST['email']; // Ambil email dari input style="font-family: Sans-Bold" form
+    $password = $_POST['password']; // Ambil password dari input style="font-family: Sans-Bold" form
 
     // Query untuk mencari user berdasarkan email
     $stmt = $pdo->prepare("SELECT * FROM users WHERE email = :email");
@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['error'] = "User tidak ditemukan!";
         header('Location: login.php'); // Redirect ke halaman login
         exit();
-    } else {
+    } else {        
         // Jika user ditemukan tapi password salah
         $_SESSION['error'] = "Invalid email or password!";
         header('Location: login.php');
@@ -51,11 +51,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
 
 <header class="header" style="border: 5px black; border-bottom: 0.1px solid black;">
-    <h1>Unite</h1>
+    <h1 style="font-family: Sans-Bold;" >Unite</h1>
     <nav class="navigation_">
         <a href="index.php" style="color: black;">Home</a>
         <a href="events.php" style="color: black;">Events</a>
-        <a href="about.php" style="color: black;">About Us</a>
+
     </nav>
 </header>
 
@@ -67,8 +67,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php endif; ?>
     <form action="login.php" method="POST">
         <div class="form-group">
-            <input type="text" id="email" name="email" placeholder="Enter Email" required><br><br>
-            <input type="password" id="password" name="password" placeholder="Enter Password" required><br><br>
+            <input style="font-family: Sans-Bold" type="text" id="email" name="email" placeholder="Enter Email" required><br><br>
+            <input style="font-family: Sans-Bold" type="password" id="password" name="password" placeholder="Enter Password" required><br><br>
         </div>
         <button type="submit" name="login" class="button">Login</button>
     </form>
