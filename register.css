@@ -1,0 +1,192 @@
+@font-face {
+    font-family: Sans-Bold ;
+    src: url(fonts/GeneralSans-Bold.otf);
+}
+
+@font-face {
+    font-family: SemiBold;
+    src: url(fonts/GeneralSans-Semibold.otf);
+}
+
+@font-face {
+    font-family: Gambetta;
+    src: url(fonts/Gambetta-Regular.otf);
+}
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Karla-ExtraBold;
+}   
+
+header {
+    background-color: white;
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 100px;
+    z-index: 100;
+    transition: all 0.5s;
+    text-decoration: none;
+}
+
+.header h1 {
+    font-family: Sans-Bold;
+}
+
+/* Flex container to center the links and keep login/register on the right */
+.navigation_ {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1; /* Allows the center section to grow and center the content */
+}
+
+.navigation_ a {
+    font-family: SemiBold;
+    font-size: 25px;
+    text-decoration: none; /* Remove default underline */
+    padding: 6px 15px;
+    margin: 0 10px;
+    position: relative; /* Required for positioning the ::after element */
+    transition: 0.4s;
+    color: black;
+}
+
+/* Add an underline effect on hover */
+.navigation_ a::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    left: 50%;
+    bottom: -8px; /* Position the underline slightly below the text */
+    background-color: #cc308a; /* Underline color */
+    transition: width 0.4s ease, left 0.4s ease; /* Smooth transition */
+}
+
+.navigation_ a:hover::after {
+    width: 100%; /* Expand underline to full width on hover */
+    left: 0; /* Start the underline from the left on hover */
+}
+
+
+.navigation_-buttons {
+    display: flex;
+    gap: 10px; /* Space between login and register buttons */
+}
+
+.button {
+    text-decoration: none;
+    font-family: SemiBold;
+    background-color: white;
+    color: #cc308a;
+    border: 2px solid #cc308a;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #cc308a;
+    color: white;
+}
+
+.button2 {
+    font-family: SemiBold;
+    text-decoration: none;
+    background-color: #cc308a;
+    color: white;
+    border: 2px solid #cc308a;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.button2:hover {
+    background-color: white;
+    color: #cc308a;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .event-container {
+        grid-template-columns: repeat(2, 1fr); /* Two columns for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .event-container {
+        grid-template-columns: 1fr; /* Single column for mobile screens */
+    }
+}
+
+.register-form {
+    text-align: center; 
+    padding: 50px;
+}
+
+body{
+    background-image: url('photos/konsers7.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    overflow-x: hidden;
+    transition: background-color 1s ease;
+}
+
+.container8 {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    margin: 100px auto;
+    border-radius: 10px;
+}
+
+h2 {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: left;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #cc308a;
+}
+
+h4 {
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 10px;
+}
+
+h6 {
+    text-align: left;
+    font-weight: 10;
+}

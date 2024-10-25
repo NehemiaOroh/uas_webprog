@@ -189,6 +189,3 @@ if ($isLoggedIn) {
 
 </body>
 </html>
-
-</body>
-</html>

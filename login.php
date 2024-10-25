@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="login.css">
     <title>Login</title>
 </head>
 <body>
@@ -59,19 +59,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </nav>
 </header>
 
-<div class="login-form" style="text-align: center; padding: 50px;">
-    <h1>Login</h1>
+<div class="container8">
+<div class="login-form">
+    <h2>Log in</h2>
     <?php if(isset($_SESSION['error'])): ?>
         <p style="color: red;"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></p>
     <?php endif; ?>
     <form action="login.php" method="POST">
-        <label for="email">Nomor HP atau Email</label><br>
-        <input type="text" id="email" name="email" placeholder="Enter Email" required><br><br>
-        <label for="password">Password</label><br>
-        <input type="password" id="password" name="password" placeholder="Enter Password" required><br><br>
+        <div class="form-group">
+            <input type="text" id="email" name="email" placeholder="Enter Email" required><br><br>
+            <input type="password" id="password" name="password" placeholder="Enter Password" required><br><br>
+        </div>
         <button type="submit" name="login" class="button">Login</button>
     </form>
-    <a href="register.php" class="help-link">Belum punya akun? Daftar</a>
+    <h5><a href="register.php" class="help-link">Belum punya akun? Daftar, yuk!</h5></a>
+    </div>
 </div>
 
 </body>
