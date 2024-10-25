@@ -73,7 +73,7 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
 // Fetch user registrations per event
 $registrations = [];
 foreach ($events as $event) {
-    $stmt = $pdo->prepare("SELECT COUNT(*) FROM registrations WHERE event_id = ?");
+    $stmt = $pdo->prepare("SELECT COUNT(*) FROM event_registrations WHERE event_id = ?");
     $stmt->execute([$event['event_id']]);
     $registrations[$event['event_id']] = $stmt->fetchColumn();
 }

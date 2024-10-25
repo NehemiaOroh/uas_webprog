@@ -71,8 +71,8 @@ if ($isLoggedIn) {
                        <a href="admindashboard.php" style="text-decoration:none; font-family:SemiBold; color:black; padding-bottom:10px; ">Admin Dashboard</a>
                     <?php endif; ?>
                     <form method="POST">
-                        <a href="" style="text-decoration:none; font-family:SemiBold; color:black; padding-bottom:10px; ">Edit Profile</a>
-                        <a href="" style="text-decoration:none; font-family:SemiBold; color:black; padding-bottom:10px; ">Event Registrations</a>
+                        <a href="edit_profile.php" style="text-decoration:none; font-family:SemiBold; color:black; padding-bottom:10px; ">Edit Profile</a>
+                        <a href="profile.php" style="text-decoration:none; font-family:SemiBold; color:black; padding-bottom:10px; ">Event Registrations</a>
                         <button name="logout" class="button" style="margin-top:10px;">Logout</button>
                     </form>
                 </div>
@@ -154,7 +154,7 @@ if ($isLoggedIn) {
         <h1 class="event_name">Bernadya Concert</h1>
     </div>
     <div class="event_item2">
-        <img src="photos/nadin.jpeg" alt="nadine">
+        <img src="photos/rizky.jpeg" alt="nadine">
         <h2 class="event-description">28 Oktober 2024</h2>
         <h1 class="event_name">Rizky Febian & Mahalini Concert</h1>
     </div>
@@ -169,6 +169,14 @@ if ($isLoggedIn) {
         <h1 class="event_name">Hivi! Concert</h1>
     </div>
 </div>
+
+
+
+<script>
+    // Re-initialize feather icons for footer
+    feather.replace();
+</script>
+
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {

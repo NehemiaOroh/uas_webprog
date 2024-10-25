@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['error'] = "User tidak ditemukan!";
         header('Location: login.php'); // Redirect ke halaman login
         exit();
-    } else {
+    } else {        
         // Jika user ditemukan tapi password salah
         $_SESSION['error'] = "Invalid email or password!";
         header('Location: login.php');
@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
 
 <header class="header" style="border: 5px black; border-bottom: 0.1px solid black;">
-    <h1 >Unite</h1>
+    <h1 style="font-family: Sans-Bold;" >Unite</h1>
     <nav class="navigation_">
         <a href="index.php" style="color: black;">Home</a>
         <a href="events.php" style="color: black;">Events</a>

@@ -100,8 +100,8 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
                        <a href="admindashboard.php" style="text-decoration:none; font-family:SemiBold; color:black; padding-bottom:10px; ">Admin Dashboard</a>
                     <?php endif; ?>
                     <form method="POST">
-                        <a href="" style="text-decoration:none; font-family:SemiBold; color:black; padding-bottom:10px; ">Edit Profile</a>
-                        <a href="" style="text-decoration:none; font-family:SemiBold; color:black; padding-bottom:10px; ">Event Registrations</a>
+                        <a href="edit_profile.php" style="text-decoration:none; font-family:SemiBold; color:black; padding-bottom:10px; ">Edit Profile</a>
+                        <a href="profile.php" style="text-decoration:none; font-family:SemiBold; color:black; padding-bottom:10px; ">Event Registrations</a>
                         <button name="logout" class="button" style="margin-top:10px;">Logout</button>
                     </form>
                 </div>

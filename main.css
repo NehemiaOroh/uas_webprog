@@ -311,9 +311,9 @@ header {
 }
 
 .events {
-    padding-left: 180px;
+    padding-left: 150px;
     padding-top: 100px; /* Existing padding */
-    padding-bottom: 50px; /* Add bottom padding for extra space */
+    padding-bottom: 80px; /* Add bottom padding for extra space */
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
@@ -326,7 +326,8 @@ header {
 
 
 .event-text h1 {
-    font-size: 50px;
+    margin-left: -50px;
+    font-size: 40px;
     font-family: Sans-Bold;
     text-align: center;
     display: inline-block;
@@ -347,7 +348,6 @@ header {
     flex-direction: column;
     align-items: center;
     margin-bottom: 10px;
-    
     padding-bottom: 10px; /* Optional: Space between the image and the underline */
 }
 
@@ -391,8 +391,9 @@ header {
 }
 
 .event_name{
+    padding-bottom: 50px;
     margin-right: 80px;
-    padding-top: 10px;
+    padding-top: -10px;
     line-height: 1.2;
     margin-left: 60px;
     font-size: 35px;

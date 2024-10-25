@@ -13,8 +13,6 @@ try {
     die("Connection failed: " . $e->getMessage());
 }
 
-
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_SESSION['user_id']) && isset($_POST['event_id'])) {
         $userId = $_SESSION['user_id'];
@@ -40,35 +38,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo json_encode(['status' => 'error', 'message' => 'Failed to purchase ticket.']);
         }
     } else {
-        echo json_encode(['status' => 'error', 'message' => 'User  not logged in or event ID not provided.']);
+        echo json_encode(['status' => 'error', 'message' => 'User not logged in or event ID not provided.']);
     }
 } else {
     echo json_encode(['status' => 'error', 'message' => 'Invalid request method.']);
 }
-
-
-
-
-$eventId = $_POST['event_id'];
-$userId = $_SESSION['user_id'];
-
-// Check if the user is already registered for the event
-$stmt = $pdo->prepare("SELECT * FROM event_registrations WHERE user_id = ? AND event_id = ?");
-$stmt->execute([$userId, $eventId]);
-
-if ($stmt->rowCount() > 0) {
-    echo json_encode(['status' => 'error', 'message' => 'You are already registered for this event.']);
-    exit();
-}
-
-// Insert registration into database
-$stmt = $pdo->prepare("INSERT INTO event_registrations (user_id, event_id) VALUES (?, ?)");
-$stmt->execute([$userId, $eventId]);
-
-if ($stmt->rowCount() > 0) {
-    echo json_encode(['status' => 'success', 'message' => 'Ticket purchased successfully!']);
-} else {
-    echo json_encode(['status' => 'error', 'message' => 'Failed to purchase ticket. Please try again.']);
-}
-
-?>
