@@ -88,7 +88,7 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <nav class="navigation_">
         <a href="index.php" style="color: black;">Home</a>
         <a href="events.php" style="color: black;">Events</a>
-        <a href="" style="color: black;">About Us</a>
+
     </nav>
     <div class="navigation_-buttons">
         <?php if ($isLoggedIn): ?>

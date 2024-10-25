@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <nav class="navigation_">
         <a href="index.php" style="color: black;">Home</a>
         <a href="events.php" style="color: black;">Events</a>
-        <a href="about.php" style="color: black;">About Us</a>
+
     </nav>
 </header>
 
@@ -78,17 +78,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php endif; ?>
     <form action="register.php" method="POST" id="registerForm">
     <div class="form-group">
-        <input type="text" name="name" placeholder="Enter Your Name" required><br><br>
-        <input type="email" name="email" placeholder="Enter Your Email" required><br><br>
+        <input style="font-family: SemiBold;" type="text" name="name" placeholder="Enter Your Name" required><br><br>
+        <input style="font-family: SemiBold;" type="email" name="email" placeholder="Enter Your Email" required><br><br>
         
         <div class="toggle-password">
-            <input type="password" name="password" id="password" placeholder="Enter Password" required><br>
+            <input style="font-family: SemiBold;" type="password" name="password" id="password" placeholder="Enter Password" required><br>
             <i id="togglePassword" class="fa fa-eye"></i>
         </div>
-        <h6><label for="password">Min. 8 karakter berupa kombinasi angka, huruf besar, dan huruf kecil.</label></h6>
+        <h6><label for="password" style="font-family: SemiBold;">Min. 8 karakter berupa kombinasi angka, huruf besar, dan huruf kecil.</label></h6>
 
         <div class="toggle-password">
-            <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password" required><br>
+            <input style="font-family: SemiBold;" type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password" required><br>
             <i id="toggleConfirmPassword" class="fa fa-eye"></i>
         </div>
     </div>
